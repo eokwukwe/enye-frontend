@@ -19,7 +19,7 @@ export default function FilterData({ column }) {
       }}
       className='border border-transparent w-26 text-xs px-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded focus:border-transparent'
     >
-      <option value=''>Filter</option>
+      <option value=''>All</option>
       {options.map((option, i) => (
         <option key={i} value={option}>
           {option}
