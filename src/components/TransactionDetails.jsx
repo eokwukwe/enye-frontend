@@ -5,6 +5,8 @@ import customBg from '../helpers/customBg'
 import prepareData from '../helpers/prepareData'
 import { tableHeaders } from '../helpers/tableHeaders'
 
+import ProfileDetails from './ProfileDetails'
+
 export default function TransactionDetails({ response }) {
   const { profiles } = prepareData(response)
 
@@ -45,12 +47,13 @@ export default function TransactionDetails({ response }) {
                 <tbody className='bg-white' {...getTableBodyProps()}>
                   {rows.map(row => {
                     prepareRow(row)
+
                     return (
                       <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
                           const header = cell.column.Header
 
-                          console.log('>>>>>', cell.value)
+                          // console.log('>>>>>', cell.row.original)
 
                           return (
                             <td
@@ -73,10 +76,8 @@ export default function TransactionDetails({ response }) {
                             </td>
                           )
                         })}
-                        <td className='px-2 py-2 whitespace-nowrap text-sm font-medium '>
-                          <button className='text-blue-600 hover:bg-blue-100 px-3 rounded py-1 focus:outline-none focus:ring-1 active:bg-blue-100'>
-                            Details
-                          </button>
+                        <td className='px-2 py-2'>
+                          <ProfileDetails profile={row.original} />
                         </td>
                       </tr>
                     )
