@@ -1,22 +1,27 @@
 export const tableHeaders = [
   {
     Header: 'Name',
-    accessor: 'Name'
+    accessor: 'Name',
+    disableFilters: true
   },
   {
     Header: 'Gender',
-    accessor: 'Gender'
+    accessor: 'Gender',
+    filter: 'includes'
   },
   {
     Header: 'Payment Method',
-    accessor: 'PaymentMethod'
+    accessor: 'PaymentMethod',
+    filter: 'includes'
   },
   {
     Header: 'Phone',
-    accessor: 'PhoneNumber'
+    accessor: 'PhoneNumber',
+    disableFilters: true
   },
   {
     Header: 'Email',
-    accessor: 'Email'
+    accessor: 'Email',
+    disableFilters: true
   }
 ]
