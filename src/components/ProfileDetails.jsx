@@ -1,23 +1,9 @@
 import React from 'react'
 
+import formatDate from '../helpers/formatDate'
+
 export default function ProfileDetails({ profile }) {
   const [showModal, setShowModal] = React.useState(false)
-
-  function formatDate(dateValue) {
-    const parsedDate = new Date(dateValue)
-
-    const dateOptions = {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    }
-
-    const date = parsedDate.toLocaleDateString('en-NG', dateOptions)
-    const time = parsedDate.toLocaleTimeString('en-NG', { hour12: true })
-
-    return `${date} ${time}`
-  }
 
   return (
     <>
@@ -188,15 +174,6 @@ export default function ProfileDetails({ profile }) {
                       {formatDate(profile.LastLogin)}
                     </div>
                   </div>
-
-                  {/* <div class='bg-gray-50 px-4 py-5 grid grid-cols-2'>
-                      <div class='text-sm font-medium text-gray-500'>
-                        Full name
-                      </div>
-                      <div class='text-sm text-gray-900'>
-                        Margot Foster
-                      </div>
-                    </div> */}
                 </div>
               </div>
             </div>

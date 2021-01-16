@@ -1,25 +1,36 @@
 import React from 'react'
-import { useTable } from 'react-table'
+import { useTable, useGlobalFilter } from 'react-table'
 
 import customBg from '../helpers/customBg'
 import prepareData from '../helpers/prepareData'
 import { tableHeaders } from '../helpers/tableHeaders'
 
 import ProfileDetails from './ProfileDetails'
+import Search from './Search'
 
 export default function TransactionDetails({ response }) {
   const { profiles } = prepareData(response)
+
+  const columns = React.useMemo(() => tableHeaders, [])
+  const data = React.useMemo(() => profiles, [])
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
-  } = useTable({ columns: tableHeaders, data: profiles })
+    prepareRow,
+    state,
+    setGlobalFilter
+  } = useTable({ columns, data }, useGlobalFilter)
+
+  const { globalFilter } = state
 
   return (
     <>
+      <span className='mb-5'>
+        <Search filter={globalFilter} setFilter={setGlobalFilter} />
+      </span>
       <div className='flex flex-col'>
         <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='py-2 align-middle inline-block sm:px-6 lg:px-8'>
@@ -52,9 +63,6 @@ export default function TransactionDetails({ response }) {
                       <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
                           const header = cell.column.Header
-
-                          // console.log('>>>>>', cell.row.original)
-
                           return (
                             <td
                               className={`px-6 py-2 text-sm whitespace-nowrap text-gray-500 ${
